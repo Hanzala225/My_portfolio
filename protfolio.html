@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        nav {
+            background-color: #b0b0b0;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #999;
+        }
+        .nav-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .nav-left h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #111;
+        }
+        .nav-left p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+        nav ul li a {
+            color: #111;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #666;
+        }
+        section {
+            padding: 2rem;
+            margin: 2rem 0;
+            border-bottom: 1px solid #ccc;
+        }
+        #home {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        .home-left {
+            flex: 1;
+            text-align: center;
+        }
+        .home-left img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+        }
+        .home-right {
+            flex: 1;
+        }
+        .home-right h1 {
+            color: #333;
+            margin: 0 0 1rem 0;
+            font-size: 2.5rem;
+        }
+        .home-right p {
+            color: #555;
+            line-height: 1.8;
+        }
+        #about {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1rem;
+        }
+        #about .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 0.2em;
+            color: #333;
+        }
+        #about .section-title small {
+            display: block;
+            margin-top: 0.75rem;
+            width: 60px;
+            height: 3px;
+            background: #b0b0b0;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 2px;
+        }
+        #about .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+        #about .about-card,
+        #about .about-right {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        #about .about-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        #about .about-left h3 {
+            margin: 0;
+            font-size: 1.75rem;
+            color: #111;
+        }
+        #about .about-left p {
+            color: #555;
+            line-height: 1.75;
+        }
+        #about .contact-list {
+            display: grid;
+            gap: 0.9rem;
+            margin-top: 1.5rem;
+        }
+        #about .contact-item {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        #about .contact-item span {
+            color: #777;
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+        #about .profile-circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #about .profile-circle img {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        #about .about-right h3 {
+            margin: 0 0 1rem 0;
+            color: #111;
+            font-size: 1.5rem;
+        }
+        #about .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+        #about .skill-bar strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        #about .skill-bar .progress {
+            width: 100%;
+            height: 10px;
+            border-radius: 999px;
+            background: #e0e0e0;
+            overflow: hidden;
+        }
+        #about .skill-bar .progress-inner {
+            height: 100%;
+            border-radius: 999px;
+            background: #777;
+            width: 0;
+            transition: width 0.8s ease;
+        }
+        #about .skill-bar .skill-value {
+            float: right;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        #certification {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #certification .cert-grid {
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+        }
+        #certification h2 {
+            text-align: center;
+            position: relative;
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
+        #certification h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #b0b0b0;
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+        #certification .cert-card {
+            background: #f8f8f8;
+            border: 1px solid #dedede;
+            border-radius: 18px;
+            padding: 1.6rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            cursor: pointer;
+            width: 100%;
+            max-width: 360px;
+            min-height: 220px;
+            box-sizing: border-box;
+        }
+        #certification .cert-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.15);
+            border-color: #c1c1c1;
+        }
+        #certification .cert-card h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.1rem;
+            color: #222;
+        }
+        #certification .cert-card p {
+            margin: 0;
+            color: #555;
+            line-height: 1.7;
+        }
+        #certification .cert-card span {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #888;
+            font-size: 0.95rem;
+        }
+        #skills {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #skills h2 {
+            text-align: center;
+            position: relative;
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
+        #skills h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #b0b0b0;
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+        #skills .skills-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        #skills .skill-card {
+            background: #f8f8f8;
+            border: 1px solid #dedede;
+            border-radius: 18px;
+            padding: 1.6rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            cursor: pointer;
+        }
+        #skills .skill-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 46px rgba(0, 0, 0, 0.12);
+            border-color: #c1c1c1;
+        }
+        #skills .skill-card h3 {
+            margin: 0 0 1rem 0;
+            color: #222;
+            font-size: 1.2rem;
+        }
+        #skills .skill-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #skills .skill-card li {
+            padding: 0.5rem 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+        #skills .skill-card li:last-child {
+            border-bottom: none;
+        }
+        #education {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #education h2 {
+            text-align: center;
+            position: relative;
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
+        #education h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #b0b0b0;
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+        #education .edu-list {
+            display: grid;
+            gap: 1rem;
+        }
+        #education .edu-item {
+            background: #f8f8f8;
+            border: 1px solid #dedede;
+            border-radius: 18px;
+            padding: 1.6rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+        }
+        #education .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        #education .edu-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #222;
+        }
+        #education .edu-year {
+            color: #555;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        #education .edu-item p {
+            margin: 1rem 0 0;
+            color: #555;
+            line-height: 1.7;
+        }
+        #projects {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #projects h2 {
+            text-align: center;
+            position: relative;
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
+        #projects h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #b0b0b0;
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+        #projects .project-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+        #projects .project-card {
+            background: #f8f8f8;
+            border: 1px solid #dedede;
+            border-radius: 18px;
+            padding: 1.8rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            cursor: pointer;
+        }
+        #projects .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.12);
+            border-color: #c1c1c1;
+        }
+        #projects .project-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e4e4e4;
+            color: #222;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        #projects .project-card h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.2rem;
+            color: #222;
+        }
+        #projects .project-card p {
+            margin: 0.35rem 0;
+            color: #555;
+            line-height: 1.7;
+        }
+        #projects .project-card .project-tech {
+            margin-top: 1rem;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        #projects .project-card .project-tech span {
+            background: #e0e0e0;
+            color: #555;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+        h2 {
+            color: #333;
+        }
+        @media (max-width: 992px) {
+            #about .about-grid {
+                grid-template-columns: 1fr;
+            }
+            #about .profile-circle {
+                margin-bottom: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            #home {
+                flex-direction: column;
+            }
+            #certification .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            #skills .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <h3>Syed Hanzala Haider</h3>
+            <p>✉️ contact: hanzalazahid63@gmail.com | 📱 +92 3199332006 | 📍 Karachi, Pakistan</p>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certification">Certification</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="home-left">
+            <img src="hanzala.jpeg" alt="Syed Hanzala Haider">
+        </div>
+        <div class="home-right">
+            <h1>Syed Hanzala Haider</h1>
+            <p>Welcome to my portfolio! Motivated Computer Science student at Muhammad Ali Jinnah University (MAJU) with a strong grasp of Core Programming and Web Technologies. Aiming to leverage my technical expertise and passion for education to simplify complex Computer Science basics for students in a coaching or academic environment. Committed to fostering a productive learning atmosphere while sharing knowledge in C++, Python, and Front-End development.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+            <small></small>
+        </div>
+        <div class="about-grid">
+            <div class="about-card about-left">
+                <h3>Syed Hanzala Haider</h3>
+                <p>Passionate Computer Science student dedicated to simplifying technical concepts for learners. Experienced in HTML5, CSS3, and JavaScript, I create responsive and interactive user interfaces and help students master programming basics with modern tools.</p>
+                <div class="contact-list">
+                    <div class="contact-item"><span>📍</span><div>Karachi, Pakistan</div></div>
+                    <div class="contact-item"><span>✉️</span><div>hanzalazahid63@gmail.com</div></div>
+                    <div class="contact-item"><span>📱</span><div>+92 3199332006</div></div>
+                </div>
+            </div>
+            <div class="profile-circle">
+                <img src="hanzala.jpeg" alt="Syed Hanzala Haider">
+            </div>
+            <div class="about-right">
+                <h3>My Professional Skills</h3>
+                <div class="skill-bar">
+                    <strong>HTML5 <span class="skill-value">95%</span></strong>
+                    <div class="progress"><div class="progress-inner" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <strong>CSS3 <span class="skill-value">90%</span></strong>
+                    <div class="progress"><div class="progress-inner" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <strong>JavaScript <span class="skill-value">85%</span></strong>
+                    <div class="progress"><div class="progress-inner" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <strong>C++ <span class="skill-value">80%</span></strong>
+                    <div class="progress"><div class="progress-inner" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <strong>C <span class="skill-value">85%</span></strong>
+                    <div class="progress"><div class="progress-inner" style="width: 85%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Web Tech</h3>
+                <ul>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>jQuery</li>
+                    <li>Bootstrap</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <ul>
+                    <li>C++</li>
+                    <li>C</li>
+                    <li>Python (Basic)</li>
+                    <li>OOP Concepts</li>
+                    <li>SQL Basics</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Software & OS</h3>
+                <ul>
+                    <li>Linux (Basic)</li>
+                    <li>MS Office (Word, Excel, PowerPoint)</li>
+                    <li>Windows</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="certification">
+        <h2>Certification</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <h3>HTML, CSS, and JavaScript for Web Developers</h3>
+                <p>10Pearls University (2026)</p>
+                <span>Comprehensive web development training with a focus on responsive design and modern JavaScript.</span>
+            </div>
+            <div class="cert-card">
+                <h3>Web Designing &amp; Web Engineering</h3>
+                <p>NAVTTC (2022)</p>
+                <span>Practical skills in UI design, web structure, and development workflow for professional websites.</span>
+            </div>
+            <div class="cert-card">
+                <h3>Software Development Training</h3>
+                <p>BBSHRRDB / GIBCE Karachi (2022)</p>
+                <span>Project-based training in software development fundamentals, coding standards, and problem solving.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="edu-list">
+            <div class="edu-item">
+                <div class="edu-header">
+                    <h3>BS in Computer Science</h3>
+                    <div class="edu-year">2023 – Present</div>
+                </div>
+                <p>Muhammad Ali Jinnah University (MAJU), Karachi</p>
+            </div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <h3>Intermediate (Pre-Engineering)</h3>
+                    <div class="edu-year">2021</div>
+                </div>
+                <p>Adamjee Government Science College, Karachi</p>
+            </div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <h3>Matriculation (Science)</h3>
+                    <div class="edu-year">2019</div>
+                </div>
+                <p>Superior Grammar School, Karachi</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-logo">C++</div>
+                <h3>School Management System</h3>
+                <p>Developed modular design using classes and functions for scalability.</p>
+                <p>Engineered student records and attendance tracking features.</p>
+                <p>Applied algorithms for automated result calculations.</p>
+                <div class="project-tech">
+                    <span>C++</span>
+                    <span>OOP</span>
+                    <span>File Handling</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-logo">C</div>
+                <h3>General Store Management System</h3>
+                <p>Utilized file handling to maintain product and stock records.</p>
+                <p>Designed billing and inventory modules using structures.</p>
+                <p>Improved logical problem-solving and memory usage.</p>
+                <div class="project-tech">
+                    <span>C</span>
+                    <span>Structures</span>
+                    <span>Inventory</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
